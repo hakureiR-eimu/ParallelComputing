@@ -55,17 +55,23 @@ void search_files( const char *folder_path, const char *target_string ) {
             strcat( thread_data[ num_threads ].file_path, "/" );
             strcat( thread_data[ num_threads ].file_path, entry->d_name );
             strcpy( thread_data[ num_threads ].target_string, target_string );
+
+            pthread_create( &threads[ num_threads ], NULL, search_file,
+                            (void *) &thread_data[ num_threads ] );
+            num_threads++;
         }
         //为每个线程分配任务
     }
     closedir( directory );
 
     //线程同步
+    for ( int i = 0; i < num_threads; i++ ) {
+        pthread_join( threads[ i ], NULL );
+    }
 }
 
 int main() {
-    char folder_path[ 256 ] =
-        "/home/usami/workU/ParallelComputing/OpenMP/Task2/texts";
+    char folder_path[ 256 ] = "/home/usami/workU/ParallelComputing/Task2/texts";
     char target_string[ 256 ];
 
     scanf( "%s", target_string );
