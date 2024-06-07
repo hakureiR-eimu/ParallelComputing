@@ -27,7 +27,10 @@ void *search_file( void *arg ) {
 
     // 执行文本搜素
     while ( fgets( line, MAX_LINE_LENGTH, file ) != NULL ) {
-        printf( "%s", line );
+        if ( strstr( line, data->target_string ) != NULL ) {
+            printf( "%s:%d:%s", data->file_path, line_number, line );
+        }
+        line_number++;
     }
     // 文件关闭&线程退出
     fclose( file );
