@@ -1,8 +1,11 @@
 add_rules("mode.debug", "mode.release")
 
 target("Task1")
+    set_languages("c99")
     set_kind("binary")
-    add_files("src/*.cpp")
+    add_files("src/*.c")
+    
+    add_cxflags("-fopenmp")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
