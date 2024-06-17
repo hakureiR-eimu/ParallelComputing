@@ -95,7 +95,7 @@ int main( int argc, char **argv ) {
     matrix_multiply( A, B );
     end = clock();
 
-    clock_t time_used_in_seconds = end - start;
-    printf( "Excuted time :%d seconds\n", time_used_in_seconds );
+    clock_t time_used_in_circles = end - start;
+    printf( "Excuted time :%d circles\n", time_used_in_circles );
     return 0;
 }
