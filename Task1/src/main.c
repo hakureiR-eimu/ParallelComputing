@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 int A_length;
 int B_length;
 int A[ 100 ] = { 0 };
@@ -29,7 +30,7 @@ void matrix_multiply( int A[], int B[] ) {
             res[ i * res_length + j ] = val;
         }
     }
-
+    printf( "Res is below:\n" );
     for ( int i = 0; i < res_length; ++i ) {
         for ( int j = 0; j < res_length; ++j ) {
             printf( "%d ", res[ i * res_length + j ] );
@@ -65,7 +66,7 @@ void input() {
             ungetc( ch, stdin );
         }
     }
-    // printf( "A_len:%d,B_len:%d\n", A_length, B_length );
+    printf( "A_len:%d,B_len:%d\n", A_length, B_length );
     // for ( int i = 0; i < A_length; ++i ) {
     //     printf( "%d ", A[ i ] );
     // }
@@ -74,9 +75,12 @@ void input() {
     // for ( int i = 0; i < B_length; ++i ) {
     //     printf( "%d ", B[ i ] );
     // }
-    // printf( "\n" );
+    printf( "\n" );
 }
 int main( int argc, char **argv ) {
+    clock_t start;
+    clock_t end;
+
     A_length = 0;
     B_length = 0;
     int val;
@@ -87,6 +91,11 @@ int main( int argc, char **argv ) {
     // int *A = (int *) malloc( 100 * sizeof( int ) );
     // int *B = (int *) malloc( 100 * sizeof( int ) );
     input();
+    start = clock();
     matrix_multiply( A, B );
+    end = clock();
+
+    clock_t time_used_in_seconds = end - start;
+    printf( "Excuted time :%d seconds\n", time_used_in_seconds );
     return 0;
 }
